@@ -39,5 +39,6 @@ int main()
     int len = strlen(string);
     char *jaden = malloc( sizeof(char) * (len + 1) );
     to_jaden_case(jaden, string);
+    free(jaden);
     return 0;
 }
