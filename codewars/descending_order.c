@@ -22,42 +22,58 @@ void print_int_arr(int *arr)
 int comp(const void* a, const void* b) {
   	
   	// If a is smaller, positive value will be returned
-    return (*(int*)a - *(int*)b);
+    return (*(int*)b - *(int*)a);
 }
 
 uint64_t descendingOrder(uint64_t n)
 {
+    if (n < 10) return n;
     char string[256];  
     sprintf(string, "%lu", n);
     // printf("%s\n", string);
     int len = strlen(string);
 
     // char *sorted = malloc( sizeof(char) * (len + 1) );
-    int size = (int)(sizeof(int) * (len + 1));
-    printf("size = %d\n", size);
-    int *sorted = malloc( sizeof(int) * (len + 1) );
+    int size = (int)(sizeof(int) * (len));
+
+    //printf("size = %d\n", size);
+    int *sort = malloc( size );
+    /**
     printf("sizeof(int) * (len + 1) = %ld\n", sizeof(int) * (len + 1));
     printf("sizeof(int): %ld\n", sizeof(int));
     printf("len: %d\n", len);
     printf("sorted: %ld\n", sizeof(sorted));
     printf("len(sortd): %ld\n", sizeof(sorted) / sizeof(sorted[0]));
+     */
     
     for (int i = 0; i < len; i++)
     {
-        sorted[i] = (int)string[i];
+        sort[i] = (int)string[i];
     }
-    // print_int_arr(sorted);
-    long siz = sizeof(sorted) / sizeof(sorted[0]);
+    // long siz = sizeof(sorted) / sizeof(sorted[0]);
     // printf("sizeof(sorted): %ld\nsizeof(sorted[0]): %ld\n", sizeof(sorted), sizeof(sorted[0]));
     // printf("siz: %ld\n", siz);
-    qsort(sorted, siz, sizeof(int), comp);
-    // print_int_arr(sorted);
+    //print_int_arr(sort);
+    qsort(sort, size/sizeof(int), sizeof(int), comp);
+    //print_int_arr(sort);
+    
+    char *sorted = malloc( sizeof(char) * (len + 1));
+    for (int i = 0; i < len; i++)
+    {
+        sorted[i] = (char)sort[i];
+        //printf("(char)sort[i]-48: %c\n", (char)sort[i]);
+        //printf("sort[i]-48: %d\n", sort[i]);
+    }
+    //printf("string: %s\n", sorted);
+    uint64_t ret = atoi(sorted);
+    free(sort);
     free(sorted);
-    return 0;
+    printf("return: %ld\n", ret);
+    return ret;
 }
 
 int main() 
 {
-    uint64_t n = 25431;    
+    uint64_t n = 1469594179;    
     descendingOrder(n);
 }
