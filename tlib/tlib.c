@@ -1,7 +1,3 @@
 #include "tlib.h"
 
-void my_strcpy(char *s, char *t)
-{
-    while ((*s++ = *t++))
-        ;
-}
+int is_numeric(char c) { return (int)c > 47 && (int)c < 58; }
