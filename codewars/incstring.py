@@ -1,15 +1,9 @@
 import re
 
-
-s = ""
-while s != "quit":
-    s = input("Enter your string: ")
-
-    # s = "teitur"
-    x = re.search("[a-z]+0*", s)
-    alpha = s[:(x.span()[1])]
-    num = s[(x.span()[1]):]
-    if not num:
-        num = 0
-    inc = int(num) + 1
-    print(alpha + str(inc))
+def increment_string(strng):
+    numeric = re.search("[0-9]*$", strng)
+    a = numeric.span()[0]
+    b = numeric.span()[1]
+    alpha = strng[:a]
+    beta = strng[a:b] if strng[a:b] else '0'
+    return alpha + '{:0>{width}}'.format(int(beta)+1, width=len(beta))
