@@ -3,10 +3,17 @@
 
 typedef char Pair[2];
 
-Pair *split_2(const char *string, size_t *n_pairs) {
-// report the length of your array through `n_pairs` and return a freeable pointer
+Pair *split_2(const char *string, size_t *n_pairs) 
+{ // report the length of your array through `n_pairs` and return a freeable pointer
+
+    for (int i = 0; i < *n_pairs; i+=2)
+    {
+        printf("%d%d: ", i,i+1);
+        printf("%c%c ", string[i], string[i+1]);
+        printf("\n");
+    }
+    // char *array = malloc(*n_pairs * sizeof(char));
     *n_pairs = (*n_pairs % 2 == 0) ? (*n_pairs/2) : (*n_pairs/2)+1;
-    printf("%zu\n", *n_pairs);
     return NULL;
 }
 

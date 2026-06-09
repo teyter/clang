@@ -3,12 +3,14 @@
 
 typedef char Pair[2];
 
-void foo(const char *string) {
+void foo(const char *string) 
+{
     printf("%s\n", string);
     return;
 }
 
-void bar(size_t *n_pairs) {
+void bar(size_t *n_pairs) 
+{
     printf("%zu\n", *n_pairs);
     return;
 }
